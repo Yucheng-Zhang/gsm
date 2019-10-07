@@ -207,7 +207,7 @@ class gsm:
 
     def c_xi(self, int_m=None):
         '''Compute RSD xi_0 and xi_2.'''
-        t0 = time.time()
+        # t0 = time.time()
         xi2d = np.zeros((self.s_arr.shape[0], self.mu_arr.shape[0]))
 
         if int_m == 'scipy':
@@ -238,5 +238,5 @@ class gsm:
         fac = 5. / 2.
         xi_2 = fac * np.sum(xi2d_w * L_mu, axis=1)
 
-        print('>> time elapsed: {0:.2f} s'.format(time.time()-t0))
+        # print('>> time elapsed: {0:.2f} s'.format(time.time()-t0))
         return xi_0, xi_2
