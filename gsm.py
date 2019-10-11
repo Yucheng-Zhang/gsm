@@ -186,6 +186,7 @@ class gsm:
         sigma2 = self._sigma2(r, mu_r)
         res = np.zeros_like(y)
         idx = (r < 3.) | (sigma2 < 0.)
+        sigma2[idx] = 1.
 
         exp_idx = -0.5 * (r_pi - y - mu_r * self.v(r))**2 / sigma2
         res = (1. + self.xi(r)) * np.exp(exp_idx) / \
