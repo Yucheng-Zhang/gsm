@@ -211,7 +211,7 @@ class gsm:
         # t0 = time.time()
         xi2d = np.zeros((self.s_arr.shape[0], self.mu_arr.shape[0]))
 
-        if int_m == 'scipy':
+        if int_m == 'quad':
             for i in range(self.s_arr.shape[0]):
                 for j in range(self.mu_arr.shape[0]):
                     r_sigma = self.r_sigma_arr[i, j]
