@@ -35,7 +35,7 @@ class gsm:
 
         self.pars['nu'] = None
         self.pars['beta'] = None
-        self.pars['stot2'] = None
+        self.pars['stot'] = None
 
         # some data
         self.data = collections.OrderedDict()
@@ -98,9 +98,9 @@ class gsm:
                 self.r_sigma_arr[i, j] = s * np.sqrt(1. - mu**2)  # transverse
                 self.r_pi_arr[i, j] = s * mu  # los
 
-    def set_pars(self, nu=None, beta=None, stot2=None, sigma_p_100=27):
+    def set_pars(self, nu=None, beta=None, stot=None, sigma_p_100=27):
         '''Set RSD parameters.'''
-        if nu == None or beta == None or stot2 == None:
+        if nu == None or beta == None or stot == None:
             sys.exit('exit: set_pars')
 
         F1, F2 = peak_background_split(nu)
@@ -114,7 +114,7 @@ class gsm:
 
         self.pars['nu'] = nu
         self.pars['beta'] = beta
-        self.pars['stot2'] = stot2
+        self.pars['stot'] = stot
 
         xi = self.clpt['xi'][:, 2] \
             + fb11b20 * self.clpt['xi'][:, 3] \
@@ -165,7 +165,7 @@ class gsm:
         res = mu_r2 * self.sigma_p(r)
         res += self.sigma_v(r) * (1. - mu_r2) * 0.5
         res -= self.sigma_shift
-        res += self.pars['stot2']
+        res += self.pars['stot']**2
         return res
 
     def _kernel(self, y, r_pi, r_sigma):
