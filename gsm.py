@@ -157,14 +157,14 @@ class gsm:
         self.sigma_v = interpolate.interp1d(self.data['r'], sigma_v, bounds_error=False,
                                             kind='linear', fill_value=(sigma_v[0], sigma_v[-1]))
 
-        self.sigma_shift = self.sigma_p(100.) - sigma_p_100
+        # self.sigma_shift = self.sigma_p(100.) - sigma_p_100
 
     def _sigma2(self, r, mu_r):
         '''sigma_12^2(r,mu).'''
         mu_r2 = mu_r**2
         res = mu_r2 * self.sigma_p(r)
         res += self.sigma_v(r) * (1. - mu_r2) * 0.5
-        res -= self.sigma_shift
+        # res -= self.sigma_shift
         res += self.pars['stot']**2
         return res
 
