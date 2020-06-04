@@ -98,12 +98,12 @@ class gsm:
                 self.r_sigma_arr[i, j] = s * np.sqrt(1. - mu**2)  # transverse
                 self.r_pi_arr[i, j] = s * mu  # los
 
-    def set_pars(self, nu=None, beta=None, stot=None, sigma_p_100=27):
+    def set_pars(self, use_pbs=True, nu=None, F1=None, F2=None, beta=None, stot=None, sigma_p_100=27):
         '''Set RSD parameters.'''
-        if nu == None or beta == None or stot == None:
-            sys.exit('exit: set_pars')
 
-        F1, F2 = peak_background_split(nu)
+        if use_pbs:  # use peak background split
+            F1, F2 = peak_background_split(nu)
+
         fb11b20 = F1
         fb10b21 = F2
         fb11b21 = F1 * F2
